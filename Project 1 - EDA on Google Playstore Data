@@ -1,0 +1,51 @@
+#importing necessary libraries
+import numpy as np
+import seaborn as sns
+import pandas as pd
+from matplotlib import pyplot as plt
+
+#Downloading Dataset
+playstore = pd.read_csv("https://cdn.iisc.talentsprint.com/CDS/Datasets/googleplaystore.csv")\
+
+playstore.head()
+playstore.info()
+playstore.isnull().sum()
+playstore.isnull().sum()
+playstore.shape
+
+#Creating a copy
+playstore_fill=playstore
+
+#Replacing NAN with Mean
+playstore_fill['Rating'].fillna((playstore['Rating'].mean()), inplace = True)
+playstore_fill.isnull().sum()
+
+#Droping remaining Null values
+playstore_fill.dropna(inplace=True)
+playstore_fill.shape
+
+playstoredata=playstore_fill.sort_values(by='Last Updated', ascending= True)
+
+#Removing duplicate rows
+playstoredata.drop_duplicates(keep = 'last', inplace=True)
+playstoredata = playstoredata.reset_index()
+
+# Identifying English Apps
+engapplist=[]
+for j in range(0,len(playstoredata)):
+  for i in playstoredata['App'][j]:
+    c=i
+    if(ord(c) > 31 & ord(c) < 128):
+      eng = True
+      continue
+    else:
+      eng=False
+      break
+  if(eng==True):
+    engapplist.append(playstoredata.iloc[j])
+
+engapp = pd.DataFrame(engapplist)
+
+engapp.shape
+
+playstoredata["Size"].value_counts()
