@@ -108,8 +108,7 @@ plt.hist(x='Rating', bins =np.arange(1,5,0.2),data= playstoredata, histtype="bar
 fig, ax = plt.subplots(1,figsize=(15,9))
 sns.histplot(data=playstoredata, x='Rating', kde=True, bins=np.arange(1,5,0.1), hue='Type');
 
-#outliers of the rating column by plotting the boxplot category wise and handle them.
-
+#outliers of the rating column by plotting the boxplot category wise and handle them
 from scipy import stats
 for i in range(0,len(uniquecateg)):
   temp=[]
@@ -144,8 +143,7 @@ fig,ax=plt.subplots(1, figsize=(18,8))
 scat = sns.scatterplot(x='Price', y='Size', data = playstoredata);
 scat.set_xticklabels(scat.get_xticklabels(),rotation=30);
 
-# popular app categories based on rating and no. of installs
-
+#popular app categories based on rating and no. of installs
 #Groups category and applies mean function on Rating
 popapps=playstoredata.groupby('Category').agg({'Rating': 'mean'})
 popapps.sort_values(by='Rating', ascending=False)
@@ -174,7 +172,6 @@ sns.lineplot(x='Year', y='Rating', data=appyr_rat, hue='Category', legend = Fals
 playstoredata.head()
 
 #highest paid apps with a good rating
-
 for i in range(0,len(playstoredata)):
   if (playstoredata['Type'][i]=='Paid'):
     playstoredata.loc[i,'Price']= playstoredata['Price'][i][1:]
