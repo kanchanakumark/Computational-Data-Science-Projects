@@ -207,7 +207,7 @@ plt.boxplot(x='registered', data=df_hour);
 
 #Pre-processing and Data Engineering
 #droping the columns that are less important to the target based on the heatmap
-data = df_hour.drop(['instant','weekday','windspeed'], axis=1)
+data = df_hour.drop(['instant','windspeed'], axis=1)
 
 data.head(5)
 
@@ -408,15 +408,26 @@ r2_en
 
 #Determine if there is a reduction in error if two target variables are considered
 
-target_two = target[['casual', 'registered']]
+target_cas = target[['casual']]
+target_reg = target[['registered']]
 
-x_train_2, x_test_2, y_train_2, y_test_2 = train_test_split(features, target_two,test_size = .25, random_state = 100)
+x_train_2, x_test_2, y_train_2, y_test_2 = train_test_split(features, target_cas,test_size = .25, random_state = 100)
+x_train_3, x_test_3, y_train_3, y_test_3 = train_test_split(features, target_reg,test_size = .25, random_state = 100)
 
 model_lin2 = linreg.fit(x_train_2, y_train_2)
 pred_lin2 = model_lin2.predict(x_test_2)
 
+model_lin3 = linreg.fit(x_train_3, y_train_3)
+pred_lin3= model_lin3.predict(x_test_3)
+
 rmse_lin2=mean_squared_error(y_test_2,pred_lin2, squared=False)
 rmse_lin2
 
+rmse_lin3=mean_squared_error(y_test_3,pred_lin3, squared=False)
+rmse_lin3
+
 r2_lin2 = r2_score(y_test_2, pred_lin2)
 r2_lin2
+
+r2_lin3 = r2_score(y_test_3, pred_lin3)
+r2_lin3
