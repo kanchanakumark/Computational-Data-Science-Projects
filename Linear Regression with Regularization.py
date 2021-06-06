@@ -1,9 +1,9 @@
 # Advanced Certification Program in Computational Data Science A program by IISc
-Mini-Project: Linear Regression with Regularization
+#Mini-Project: Linear Regression with Regularization
 
-Problem Statement
+#Problem Statement
 
-Predict the bike-sharing counts per hour based on the features including weather, day, time, humidity, wind speed, season e.t.c.
+#Predict the bike-sharing counts per hour based on the features including weather, day, time, humidity, wind speed, season e.t.c.
 
 #Objectives
 
